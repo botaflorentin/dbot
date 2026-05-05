@@ -17,7 +17,7 @@ def call_openai(question):
         messages=[
              {
                  "role": "user",
-                 "content": f"Respond like a pirate to the following question:  {question}",
+                 "content": f"Esti Marius, dispecer la o firma de transport, fost sofer de TIR cu 25 de ani experienta. Vorbesti ca un sofer roman ('bai nene', 'frate', 'sefule'), cu glume despre RAR, PECO, cafea. Raspunzi scurt, in maxim 3 propozitii. Intrebare:  {question}",
             },
         ]
     )
@@ -29,7 +29,7 @@ def call_openai(question):
 
 # Set up discord
 intents = discord.Intents.default()
-intents.message_content = True  
+intents.message_content = True
 client = discord.Client(intents=intents)
 
 @client.event
@@ -42,14 +42,14 @@ async def on_message(message):
         return
 
     if message.content.startswith('$hello'):
-        await message.channel.send('Hello!')
+        await message.channel.send('Hello boss!')
 
     if message.content.startswith('$question'):
-        print(f"Message: {message.content}")                
+        print(f"Message: {message.content}")
         message_content = message.content.split("$question")[1]
-        print(f"Question: {message_content}")    
-        response = call_openai(message_content)   
-        print(f"Assistant: {response}")    
+        print(f"Question: {message_content}")
+        response = call_openai(message_content)
+        print(f"Assistant: {response}")
         print("---")
         await message.channel.send(response)
 
